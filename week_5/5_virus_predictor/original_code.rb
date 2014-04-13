@@ -3,7 +3,8 @@
 # I worked on this challenge [by myself, with: ].
 
 # EXPLANATION OF require_relative
-#
+# The require_relative connects the document with another documents,
+# this makes it possible to use code from another document.
 #
 require_relative 'state_data'
 
@@ -15,7 +16,7 @@ class VirusPredictor
     @population_density = population_density
     @region = region
     @next_region = regional_spread
-  end
+  end#this is defining the variable from the imput
 
   def virus_effects  #HINT: What is the SCOPE of instance variables?
     predicted_deaths(@population_density, @population, @state)
@@ -65,17 +66,24 @@ end
 #=======================================================================
 
 # DRIVER CODE
- # initialize VirusPredictor for each state
+# initialize VirusPredictor for each state
 
 
-alabama = VirusPredictor.new("Alabama", STATE_DATA["Alabama"][:population_density], STATE_DATA["Alabama"][:population], STATE_DATA["Alabama"][:region], STATE_DATA["Alabama"][:regional_spread]) 
-alabama.virus_effects
+#alabama = VirusPredictor.new("Alabama", STATE_DATA["Alabama"][:population_density], STATE_DATA["Alabama"][:population], STATE_DATA["Alabama"][:region], STATE_DATA["Alabama"][:regional_spread]) 
+#alabama.virus_effects
+#
+#jersey = VirusPredictor.new("New Jersey", STATE_DATA["New Jersey"][:population_density], STATE_DATA["New Jersey"][:population], STATE_DATA["New Jersey"][:region], STATE_DATA["New Jersey"][:regional_spread]) 
+#jersey.virus_effects
+#
+#california = VirusPredictor.new("California", STATE_DATA["California"][:population_density], STATE_DATA["California"][:population], STATE_DATA["California"][:region], STATE_DATA["California"][:regional_spread]) 
+#california.virus_effects
+#
+#alaska = VirusPredictor.new("Alaska", STATE_DATA["Alaska"][:population_density], STATE_DATA["Alaska"][:population], STATE_DATA["Alaska"][:region], STATE_DATA["Alaska"][:regional_spread]) 
+#alaska.virus_effects
 
-jersey = VirusPredictor.new("New Jersey", STATE_DATA["New Jersey"][:population_density], STATE_DATA["New Jersey"][:population], STATE_DATA["New Jersey"][:region], STATE_DATA["New Jersey"][:regional_spread]) 
-jersey.virus_effects
 
-california = VirusPredictor.new("California", STATE_DATA["California"][:population_density], STATE_DATA["California"][:population], STATE_DATA["California"][:region], STATE_DATA["California"][:regional_spread]) 
-california.virus_effects
-
-alaska = VirusPredictor.new("Alaska", STATE_DATA["Alaska"][:population_density], STATE_DATA["Alaska"][:population], STATE_DATA["Alaska"][:region], STATE_DATA["Alaska"][:regional_spread]) 
-alaska.virus_effects
+STATE_DATA.each {|x,y|
+#p x, y[:population_density], y[:population], y[:region], y[:regional_spread]
+z = VirusPredictor.new(x, y[:population_density], y[:population], y[:region], y[:regional_spread])
+z.virus_effects
+}
