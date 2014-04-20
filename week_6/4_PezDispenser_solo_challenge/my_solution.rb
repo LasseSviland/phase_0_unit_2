@@ -21,16 +21,65 @@
 # 3. Initial Solution
 
 class PezDispenser
- 
-# your code here!
- 
+	def initialize(flavors)
+		@open = true
+		@flavors = Hash[ *flavors.collect { |v| [ v, 20/flavors.length ] }.flatten ]
+	end 
+	def pez_count
+		sum = 0
+		@flavors.each {|x,y|sum+=y}
+		return sum
+	end
+	def see_all_pez
+		@flavors.each {|x,y|puts "You have #{y} #{x} pet's"}
+		return puts "In total there is #{pez_count} pez left."
+	end
+	def add_pez(f)
+		has_falvor = false
+		@flavors.each_key { |k|has_falvor = true if k == f}
+		if has_falvor == true
+			@flavors.each { |x,y| @flavors[f] = y+=1}
+		else
+    	@flavors[f] = 1 unless has_falvor == true
+  	end
+	end
+	def get_pez
+		q = @flavors.keys[rand(@flavors.keys.length-1)]
+		@flavors[q] -= 1
+		return q.capitalize
+	end
 end
  
 
 
 # 4. Refactored Solution
 
-
+class PezDispenser
+	def initialize(flavors)
+		@open = true
+		@flavors = Hash[ *flavors.collect { |v| [ v, 20/flavors.length ] }.flatten ]
+	end 
+	def pez_count
+		sum = 0
+		@flavors.each {|x,y|sum+=y}
+		return sum
+	end
+	def see_all_pez
+		@flavors.each {|x,y|puts "You have #{y} #{x} pet's"}
+		return puts "In total there is #{pez_count} pez left."
+	end
+	def add_pez(f)
+		has_falvor = false
+		@flavors.each_key { |k|has_falvor = true if k == f}
+		@flavors.each { |x,y| @flavors[f] = y+=1} if has_falvor == true
+    @flavors[f] = 1 unless has_falvor == true
+	end
+	def get_pez
+		q = @flavors.keys[rand(@flavors.keys.length-1)]
+		@flavors[q] -= 1
+		return q.capitalize
+	end
+end
 
 
 
@@ -53,3 +102,4 @@ puts "Now you have #{super_mario.pez_count} pez!"
 
 
 # 5. Reflection 
+# This was a good way fo learning hashes a bit better, i felt i knew most of it tho.
